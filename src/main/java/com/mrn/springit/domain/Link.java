@@ -9,7 +9,8 @@ import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
-@Data // -> no need to getter&setter, requiredConstructor, hashCode & equals + tostring
+@Data // -> no need to getter&setter, requiredConstructor, hashCode & equals + toString
+@RequiredArgsConstructor
 public class Link extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +25,8 @@ public class Link extends Auditable {
     @OneToMany(mappedBy = "link")
     private List<Comment> comments = new ArrayList<>();
 
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
 
 }
